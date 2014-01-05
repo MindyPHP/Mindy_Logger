@@ -5,8 +5,11 @@ use Mindy\Logger\Target\FileTarget;
 use Tests\TestCase;
 
 
-class FileNotFoundTargetTest extends FileTargetTestCase
+class FileTargetExceptionsTest extends FileTargetTestCase
 {
+    /**
+     * @expectedException Exception
+     */
     public function testFileNotFound()
     {
         $fileTarget = new FileTarget([
@@ -16,9 +19,14 @@ class FileNotFoundTargetTest extends FileTargetTestCase
         // Remove log dir
         $this->clearDir(dirname($this->logPath));
 
-        try {
-            $fileTarget->export();
-        } catch(Exception $e) {
-        }
+        $fileTarget->export();
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidArgumentException()
+    {
+        new FileTarget();
     }
 }

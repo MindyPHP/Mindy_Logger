@@ -54,6 +54,31 @@ class FileTargetTest extends FileTargetTestCase
         $this->assertEquals(1, count($logFiles)); // rotated file not handled
     }
 
+    public function testParams()
+    {
+        $target = new FileTarget([
+            'logFile' => $this->logPath,
+            'maxLogFiles' => 0,
+            'maxFileSize' => 0
+        ]);
+        $this->assertEquals(1, $target->maxLogFiles);
+        $this->assertEquals(1, $target->maxFileSize);
+    }
+
+    /**
+     * @covers \Mindy\Logger\Target\FileTarget::init
+     */
+    public function testCreateDir()
+    {
+        $this->clearDir($this->logPath);
+
+        new FileTarget([
+            'logFile' => $this->logPath,
+        ]);
+
+        $this->assertTrue(is_dir(dirname($this->logPath)));
+    }
+
     protected function assertFileLength($filePath, $count)
     {
         $lines = explode("\n", file_get_contents($filePath));

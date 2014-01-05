@@ -26,7 +26,8 @@ use InvalidArgumentException;
  * The property [[maxLogFiles]] specifies how many files to keep.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @author Falaleev Maxim <max@studio107.ru>
+ * @since 2.1
  */
 class FileTarget extends Target
 {

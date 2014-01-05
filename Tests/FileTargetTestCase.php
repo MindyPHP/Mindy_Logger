@@ -41,6 +41,10 @@ class FileTargetTestCase extends TestCase
 
     protected function clearDir($dir)
     {
+        if(!is_dir($dir)) {
+            return null;
+        }
+
         $files = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::CHILD_FIRST
@@ -50,6 +54,7 @@ class FileTargetTestCase extends TestCase
             $todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
             $todo($fileinfo->getRealPath());
         }
+        rmdir($dir);
     }
 
     protected function getLogFiles()

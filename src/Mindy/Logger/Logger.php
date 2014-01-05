@@ -2,16 +2,12 @@
 
 namespace Mindy\Logger;
 
-use Mindy\Logger\Traits\Psr3;
-
 /**
  * Class Logger
  * @package Mindy\Logger
  */
 class Logger
 {
-    use Psr3;
-
     const ERROR = 'error';
 
     const WARNING = 'warning';
@@ -198,5 +194,70 @@ class Logger
         }
 
         return $matched;
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function info($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::INFO, $category, $message, $context, $extra);
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function error($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::ERROR, $category, $message, $context, $extra);
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function debug($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::DEBUG, $category, $message, $context, $extra);
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function warning($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::WARNING, $category, $message, $context, $extra);
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function notice($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::NOTICE, $category, $message, $context, $extra);
     }
 }

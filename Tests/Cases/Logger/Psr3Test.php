@@ -18,11 +18,11 @@ class Psr3Test extends TestCase
     }
 
     /**
-     * @covers \Mindy\Logger\Traits\Psr3::info
-     * @covers \Mindy\Logger\Traits\Psr3::notice
-     * @covers \Mindy\Logger\Traits\Psr3::warning
-     * @covers \Mindy\Logger\Traits\Psr3::error
-     * @covers \Mindy\Logger\Traits\Psr3::debug
+     * @covers \Mindy\Logger\Logger::info
+     * @covers \Mindy\Logger\Logger::notice
+     * @covers \Mindy\Logger\Logger::warning
+     * @covers \Mindy\Logger\Logger::error
+     * @covers \Mindy\Logger\Logger::debug
      * @dataProvider providerLevels
      */
     public function testLog($level)
