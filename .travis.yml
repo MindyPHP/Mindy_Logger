@@ -3,8 +3,9 @@ language: php
 php:
   - 5.4
   - 5.5
+  - hhvm
 
 script: phpunit --configuration Tests/phpunit.xml --coverage-text
 
 install:
-   - composer require mikey179/vfsStream
+   - composer require mikey179/vfsStream: v1.2.0
