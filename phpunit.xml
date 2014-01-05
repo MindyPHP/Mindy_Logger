@@ -36,13 +36,8 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-clover" target="docs/phpunit/clover.xml"/>
-        <log type="junit" target="docs/phpunit/junit.xml" logIncompleteSkipped="false"/>
-        <log type="testdox-html" target="docs/phpunit/testdox.html"/>
-
         <!-- use this for generate html report -->
-        <log type="coverage-html" target="docs/phpunit/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/>
-
-        <!--<log type="testdox-html" target="./log/testdox.html" />-->
+        <log type="coverage-html" target="docs/phpunit/coverage" charset="UTF-8"
+             yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/>
     </logging>
 </phpunit>
