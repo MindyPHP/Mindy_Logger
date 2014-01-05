@@ -1,1 +1,1 @@
-![Build status](https://travis-ci.org/studio107/Mindy_Logger.png)
+[![Build Status](https://travis-ci.org/studio107/Mindy_Logger.png?branch=master)](https://travis-ci.org/studio107/Mindy_Logger)
