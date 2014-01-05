@@ -1,3 +1,4 @@
+service_name: travis-cli
 src_dir: src/Mindy/Logger
-coverage_clover: docs/phpunit/clover.xml
-json_path: docs/phpunit/coveralls-upload.json
+coverage_clover: Tests/Docs/phpunit/clover.xml
+json_path: Tests/Docs/phpunit/coveralls-upload.json
