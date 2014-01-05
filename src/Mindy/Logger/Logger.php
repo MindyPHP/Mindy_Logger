@@ -73,7 +73,10 @@ class Logger
     public function log($level, $category, $message, array $context = [], $extra = false)
     {
         if (!is_string($message)) {
-            $message = var_export($message, true);
+            // see https://github.com/studio107/Mindy_Logger/issues/6
+            ob_start();
+            var_dump($message);
+            $message = ob_get_clean();
         }
 
         $this->messages[] = [
