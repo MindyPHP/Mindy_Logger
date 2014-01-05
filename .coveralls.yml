@@ -1,3 +1,0 @@
-service_name: travis-cli
-src_dir: src/Mindy/Logger
-coverage_clover: docs/phpunit/clover.xml
