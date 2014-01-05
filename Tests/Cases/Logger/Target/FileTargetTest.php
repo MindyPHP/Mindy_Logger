@@ -2,7 +2,6 @@
 
 use Mindy\Logger\Logger;
 use Mindy\Logger\Target\FileTarget;
-use Tests\TestCase;
 
 
 class FileTargetTest extends FileTargetTestCase
@@ -52,6 +51,26 @@ class FileTargetTest extends FileTargetTestCase
 
         $logFiles = $this->getLogFiles();
         $this->assertEquals(1, count($logFiles)); // rotated file not handled
+    }
+
+    protected static function getMethod($name)
+    {
+        $class = new ReflectionClass('Mindy\Logger\Target\FileTarget');
+        $method = $class->getMethod($name);
+        $method->setAccessible(true);
+        return $method;
+    }
+
+    /**
+     * For test coverage
+     */
+    public function testRotateFilesReflector()
+    {
+        $foo = self::getMethod('rotateFiles');
+        $obj = new FileTarget([
+            'logFile' => $this->logPath,
+        ]);
+        $foo->invokeArgs($obj, []);
     }
 
     public function testParams()
