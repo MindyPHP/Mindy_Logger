@@ -2,8 +2,16 @@
 
 namespace Mindy\Logger;
 
+use Mindy\Logger\Traits\Psr3;
+
+/**
+ * Class Logger
+ * @package Mindy\Logger
+ */
 class Logger
 {
+    use Psr3;
+
     const ERROR = 'error';
 
     const WARNING = 'warning';
@@ -51,7 +59,7 @@ class Logger
 
     public function __construct(array $options = [])
     {
-        foreach($options as $name => $option) {
+        foreach ($options as $name => $option) {
             $this->$name = $option;
         }
 
@@ -82,7 +90,7 @@ class Logger
             'ip' => $this->ip
         ];
 
-        if($extra) {
+        if ($extra) {
             $this->messages[] = $this->getExtraMessage();
         }
 
@@ -97,7 +105,7 @@ class Logger
      */
     public function flush($final = false)
     {
-        foreach($this->targets as $target) {
+        foreach ($this->targets as $target) {
             $messages = $this->filterMessages($this->messages, $target->getLevels(), $target->categories, $target->except);
             $target->collect($messages, $final);
         }
