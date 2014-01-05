@@ -3,5 +3,8 @@
 
 src/Mindy/Helper
 
-Tests/Logs/*
+docs/*
 Tests/Log/*
+
+vendor
+composer.json

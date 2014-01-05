@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true"
-         bootstrap="bootstrap.php"
+         bootstrap="Tests/bootstrap.php"
         >
     <php>
         <ini name="memory_limit" value="-1"/>
@@ -19,8 +19,8 @@
 
     <testsuites>
         <testsuite name="Logger">
-            <directory>./Cases/</directory>
-            <directory>./Cases/Target/</directory>
+            <directory>./Tests/Cases/</directory>
+            <directory>./Tests/Cases/Target/</directory>
         </testsuite>
     </testsuites>
 
@@ -32,15 +32,16 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">../src/</directory>
+            <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
     <logging>
-        <!--<log type="coverage-clover" target="./log/clover.xml"/>-->
-        <!--<log type="coverage-php" target="./log/coverage.cov"/>-->
+        <log type="coverage-clover" target="docs/phpunit/clover.xml"/>
+        <log type="junit" target="docs/phpunit/junit.xml" logIncompleteSkipped="false"/>
+        <log type="testdox-html" target="docs/phpunit/testdox.html"/>
 
         <!-- use this for generate html report -->
-        <log type="coverage-html" target="./Log/codeCoverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/>
+        <log type="coverage-html" target="docs/phpunit/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/>
 
         <!--<log type="testdox-html" target="./log/testdox.html" />-->
     </logging>

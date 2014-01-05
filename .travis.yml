@@ -5,7 +5,11 @@ php:
   - 5.5
   # - hhvm
 
-script: phpunit --configuration Tests/phpunit.xml --coverage-text
+script:
+   - phpunit --coverage-clover docs/phpunit/clover.xml
 
 install:
    - composer require mikey179/vfsStream:1.2.0
+
+after_script:
+ - php vendor/bin/coveralls -v
