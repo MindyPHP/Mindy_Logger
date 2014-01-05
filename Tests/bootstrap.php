@@ -6,4 +6,5 @@ if(is_dir(__DIR__ . '/../vendor')) {
 
 require __DIR__ . '/../src.php';
 require __DIR__ . '/TestCase.php';
+require __DIR__ . '/FileTargetTestCase.php';
 @unlink(__DIR__ . '/Logs/app.log');
