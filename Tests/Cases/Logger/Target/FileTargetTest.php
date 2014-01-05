@@ -15,9 +15,15 @@ class FileTargetTest extends TestCase
     public function setUp()
     {
         $this->logPath = __DIR__ . '/../../../Logs/app.log';
+        @mkdir(dirname($this->logPath));
     }
 
     public function tearDown()
+    {
+        $this->clearLogs();
+    }
+
+    protected function clearLogs()
     {
         foreach($this->getLogFiles() as $file) {
             @unlink($file);
@@ -69,6 +75,30 @@ class FileTargetTest extends TestCase
 
         $logFiles = $this->getLogFiles();
         $this->assertEquals(1, count($logFiles)); // rotated file not handled
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Unable to append to log file
+     */
+    public function testFileNotFound()
+    {
+        $logger = new Logger([
+            'flushInterval' => 2,
+            'targets' => [
+                new FileTarget([
+                    'logFile' => $this->logPath,
+                ])
+            ]
+        ]);
+
+        $logger->log(Logger::INFO, 'app', 'test');
+        $logger->log(Logger::INFO, 'app', 'test');
+
+        // Remove log dir
+        rmdir(dirname($this->logPath));
+
+        $logger->flush(true);
     }
 
     protected function getLogFiles()
