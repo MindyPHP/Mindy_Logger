@@ -8,4 +8,4 @@ php:
 script: phpunit --configuration Tests/phpunit.xml --coverage-text
 
 install:
-   - composer require mikey179/vfsStream: v1.2.0
+   - composer require mikey179/vfsStream:1.2.0
