@@ -33,28 +33,52 @@ class TargetTest extends TestCase
         $this->assertEquals(['info', 'debug'], $target->getLevels());
     }
 
-    public function testFormatMessage()
+    public function testStringFormatMessage()
     {
         $target = new DummyTarget();
-        $message = $target->formatMessage('{test} something {else}', [
-            'test' => 1,
-            'else' => 'qwerty'
+        $message = $target->formatMessage([
+            'message' => [
+                '{test} something {else}', [
+                    'test' => 1,
+                    'else' => 'qwerty'
+                ]
+            ]
         ]);
-        $this->assertEquals('1 something qwerty', $message);
+        $this->assertEquals('{date} [{ip}] [{level}] [{category}] 1 something qwerty', $message);
+    }
 
-        $message = $target->formatMessage(new TestVars(['var1' => 1, 'var2' => 'qwerty']));
+    public function testObjFormatMessage()
+    {
+        $logger = new Logger([
+            'targets' => [
+                new DummyTarget()
+            ]
+        ]);
+        $obj = new TestVars(['var1' => 1, 'var2' => 'qwerty']);
+        $logger->log(Logger::INFO, 'app', $obj);
+
+        $message = $logger->messages[0]['message'][0];
         $this->assertEquals("TestVars::__set_state(array(
    'var1' => 1,
    'var2' => 'qwerty',
    'var3' => NULL,
 ))", $message);
+    }
 
-        $message = $target->formatMessage(new TestVars(['var1' => 1, 'var2' => 'qwerty']), [1, 2, 3]);
-        $this->assertEquals("TestVars::__set_state(array(
-   'var1' => 1,
-   'var2' => 'qwerty',
-   'var3' => NULL,
-))", $message);
+    public function testArrayFormatMessage()
+    {
+        $logger = new Logger([
+            'targets' => [
+                new DummyTarget()
+            ]
+        ]);
+        $logger->log(Logger::INFO, 'app', ['var1' => 1, 'var2' => 'qwerty']);
+
+        $message = $logger->messages[0]['message'][0];
+        $this->assertEquals("array (
+  'var1' => 1,
+  'var2' => 'qwerty',
+)", $message);
     }
 
     public function testExtra()
@@ -63,7 +87,7 @@ class TargetTest extends TestCase
         $this->assertTrue($logger->extra);
         $logger->log(Logger::INFO, 'app', 'test', [], true);
 
-        $target = new DummyTarget(['exportInterval' => 2]);
+        $target = new DummyTarget();
         $target->setLevels(['info']);
         $target->categories = ['app'];
 

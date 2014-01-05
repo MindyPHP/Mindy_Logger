@@ -37,7 +37,7 @@
     </filter>
     <logging>
         <!-- use this for generate html report -->
-        <log type="coverage-html" target="docs/phpunit/coverage" charset="UTF-8"
+        <log type="coverage-html" target="build/logs/coverage" charset="UTF-8"
              yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/>
     </logging>
 </phpunit>

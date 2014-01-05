@@ -68,6 +68,10 @@ class Logger
      */
     public function log($level, $category, $message, array $context = [], $extra = false)
     {
+        if (!is_string($message)) {
+            $message = var_export($message, true);
+        }
+
         $this->messages[] = [
             'level' => $level,
             'category' => $category,

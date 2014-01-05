@@ -4,6 +4,7 @@
 src/Mindy/Helper
 
 docs/*
-Tests/Log/*
+Tests/Logs/*
 
+build
 vendor

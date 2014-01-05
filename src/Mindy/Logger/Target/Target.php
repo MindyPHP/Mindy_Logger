@@ -38,6 +38,20 @@ abstract class Target
 
     private $_levels = [];
 
+    public function __construct(array $options = [])
+    {
+        foreach($options as $name => $option) {
+            $this->$name = $option;
+        }
+
+        $this->init();
+    }
+
+    public function init()
+    {
+
+    }
+
     /**
      * @return array levels
      */
@@ -69,18 +83,25 @@ abstract class Target
         }
     }
 
-    public function formatMessage($message, array $context = [])
+    public function formatData(array $context)
     {
-        if (!is_string($message)) {
-            return var_export($message, true);
-        } else {
-            $replace = array();
-            foreach ($context as $key => $val) {
-                $replace['{' . $key . '}'] = $val;
-            }
-
-            return strtr($message, $replace);
+        $replace = [];
+        foreach ($context as $key => $val) {
+            $replace['{' . $key . '}'] = $val;
         }
+        return $replace;
+    }
+
+    public function formatMessage(array $data)
+    {
+        $format = '{date} [{ip}] [{level}] [{category}] {message}';
+        list($message, $context) = $data['message'];
+        unset($data['message']);
+
+        $logMessage = strtr($message, $this->formatData($context));
+        return strtr($format, array_merge($this->formatData($data), [
+            '{message}' => $logMessage
+        ]));
     }
 
     /**
