@@ -1,5 +1,5 @@
 {
-    "name": "Mindy/Logger",
+    "name": "mindy/logger",
     "homepage": "https://github.com/studio107/Mindy_Logger",
     "autoload": {
         "psr-0": {
