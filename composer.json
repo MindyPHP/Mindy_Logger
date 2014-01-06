@@ -1,4 +1,6 @@
 {
+    "name": "Mindy/Logger",
+    "homepage": "https://github.com/studio107/Mindy_Logger",
     "autoload": {
         "psr-0": {
             "": "src/"
