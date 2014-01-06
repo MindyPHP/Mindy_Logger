@@ -14,6 +14,7 @@ class Psr3Test extends TestCase
             ['debug'],
             ['error'],
             ['warning'],
+            ['trace'],
         ];
     }
 
@@ -23,6 +24,7 @@ class Psr3Test extends TestCase
      * @covers \Mindy\Logger\Logger::warning
      * @covers \Mindy\Logger\Logger::error
      * @covers \Mindy\Logger\Logger::debug
+     * @covers \Mindy\Logger\Logger::trace
      * @dataProvider providerLevels
      */
     public function testLog($level)

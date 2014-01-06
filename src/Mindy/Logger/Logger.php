@@ -18,6 +18,8 @@ class Logger
 
     const DEBUG = 'debug';
 
+    const TRACE = 'trace';
+
     public $dateFormat = 'Y/m/d H:i:s';
 
     public $extra = true;
@@ -262,5 +264,18 @@ class Logger
     public function notice($category, $message, array $context = [], $extra = false)
     {
         $this->log(self::NOTICE, $category, $message, $context, $extra);
+    }
+
+    /**
+     * For more information see https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+     * and https://github.com/studio107/Mindy_Logger/issues/8
+     * @param $category
+     * @param $message
+     * @param array $context
+     * @param bool $extra
+     */
+    public function trace($category, $message, array $context = [], $extra = false)
+    {
+        $this->log(self::TRACE, $category, $message, $context, $extra);
     }
 }
