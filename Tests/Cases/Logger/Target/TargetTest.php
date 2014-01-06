@@ -49,6 +49,10 @@ class TargetTest extends TestCase
 
     public function testObjFormatMessage()
     {
+        if (defined('HHVM_VERSION')) {
+            $this->markTestSkipped('Not supported in hhvm');
+        }
+
         $logger = new Logger([
             'targets' => [
                 new DummyTarget()
