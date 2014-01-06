@@ -58,7 +58,11 @@ class TargetTest extends TestCase
         $logger->log(Logger::INFO, 'app', $obj);
 
         $message = $logger->messages[0]['message'][0];
-        $this->assertTrue(strpos($message, 'class TestVars') === 0);
+        $this->assertEquals("TestVars::__set_state(array(
+   'var1' => 1,
+   'var2' => 'qwerty',
+   'var3' => NULL,
+))", $message);
     }
 
     public function testArrayFormatMessage()
@@ -71,13 +75,10 @@ class TargetTest extends TestCase
         $logger->log(Logger::INFO, 'app', ['var1' => 1, 'var2' => 'qwerty']);
 
         $message = $logger->messages[0]['message'][0];
-        $this->assertEquals("array(2) {
-  'var1' =>
-  int(1)
-  'var2' =>
-  string(6) \"qwerty\"
-}
-", $message);
+        $this->assertEquals("array (
+  'var1' => 1,
+  'var2' => 'qwerty',
+)", $message);
     }
 
     public function testExtra()

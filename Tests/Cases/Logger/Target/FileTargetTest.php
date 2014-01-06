@@ -29,7 +29,7 @@ class FileTargetTest extends FileTargetTestCase
         $logger->log(Logger::INFO, 'app', (object)['qwe' => 'qwe']);
         $logger->flush(true);
 
-        $this->assertFileLength($this->logPath,8);
+        $this->assertFileLength($this->logPath, 6);
     }
 
     public function testRotateLogFiles()
