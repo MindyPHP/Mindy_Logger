@@ -1,10 +1,4 @@
 .idea
 *.iml
-
-src/Mindy/Helper
-
-docs/*
-Tests/Logs
-
 build
 vendor
