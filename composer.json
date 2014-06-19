@@ -6,7 +6,7 @@
     "license": "MIT",
     "autoload": {
         "psr-0": {
-            "Mindy\\Logger\\": "src/Mindy/Logger"
+            "": "src/"
         }
     },
     "require": {
