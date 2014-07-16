@@ -24,7 +24,7 @@ class SwiftMailerHandler extends ProxyHandler
     {
         $mail = Mindy::app()->mail;
         $mailer = $mail->getSwiftMailer();
-        $message = $mail->compose();
+        $message = $mail->compose()->getSwiftMessage();
         return new MonoSwiftMailerHandler($mailer, $message, $this->getLevel(), $this->bubble);
     }
 }

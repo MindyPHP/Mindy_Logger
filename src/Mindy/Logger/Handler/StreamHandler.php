@@ -24,11 +24,13 @@ class StreamHandler extends ProxyHandler
      */
     public $stream;
 
+    public $alias = 'application.runtime.application';
+
     public $filePermission;
 
     public function init()
     {
-        $this->stream = Alias::get('application.runtime.application') . '.log';
+        $this->stream = Alias::get($this->alias) . '.log';
         parent::init();
     }
 
