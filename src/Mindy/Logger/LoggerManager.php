@@ -14,16 +14,11 @@
 
 namespace Mindy\Logger;
 
-use Closure;
 use Exception;
-use InvalidArgumentException;
-use Mindy\Base\Component;
+use Mindy\Core\Object;
 use Mindy\Helper\Creator;
-use Monolog\Logger as MonoLogger;
-use ReflectionClass;
-use ReflectionMethod;
 
-class LoggerManager extends Component
+class LoggerManager extends Object
 {
     /**
      * @var array
@@ -73,32 +68,32 @@ class LoggerManager extends Component
         $this->handlers = array_merge($this->defaultHandler, $this->handlers);
         foreach ($this->handlers as $name => $data) {
             $formatter = null;
-            if(isset($data['formatter'])) {
+            if (isset($data['formatter'])) {
                 $formatter = $data['formatter'];
                 unset($data['formatter']);
             }
             $this->_handlers[$name] = Creator::createObject($data);
-            if($formatter) {
-                if(!isset($this->_formatters[$formatter])) {
+            if ($formatter) {
+                if (!isset($this->_formatters[$formatter])) {
                     throw new Exception("Formatter $formatter not initialized");
                 }
-                $this->_handlers[$name]->setFormatter($formatter);
+                $this->_handlers[$name]->setFormatter($this->_formatters[$formatter]->formatter);
             }
         }
 
         $this->loggers = array_merge($this->defaultLogger, $this->loggers);
-        foreach($this->loggers as $name => $data) {
+        foreach ($this->loggers as $name => $data) {
             $handlers = null;
-            if(isset($data['handlers'])) {
+            if (isset($data['handlers'])) {
                 $handlers = $data['handlers'];
                 unset($data['handlers']);
             }
             $this->_loggers[$name] = Creator::createObject($data, $name);
-            foreach($handlers as $name) {
-                if(!isset($this->_handlers[$name])) {
+            foreach ($handlers as $name) {
+                if (!isset($this->_handlers[$name])) {
                     throw new Exception("Handler $name not initialized");
                 }
-                $this->_loggers[$name]->pushHandler($this->_handlers[$name]);
+                $this->_loggers[$name]->pushHandler($this->_handlers[$name]->handler);
             }
         }
     }
@@ -106,18 +101,18 @@ class LoggerManager extends Component
     protected function getLogger($loggerName)
     {
         $log = null;
-        foreach($this->_loggers as $name => $logger) {
-            if($name == $loggerName) {
+        foreach ($this->_loggers as $name => $logger) {
+            if ($name == $loggerName) {
                 $log = $logger;
                 break;
             }
 
-            if(strpos($loggerName, $name) === 0) {
+            if (strpos($loggerName, $name) === 0) {
                 $log = $logger;
                 break;
             }
         }
-        if($log === null) {
+        if ($log === null) {
             $log = $this->getDefaultLogger();
         }
         return $log;
@@ -128,43 +123,43 @@ class LoggerManager extends Component
         return $this->_loggers['default'];
     }
 
-    public function error($message, $logger, array $context = [])
+    public function error($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addError($message, $context);
+        return $this->getLogger($logger)->addError($message, $context);
     }
 
-    public function warning($message, $logger, array $context = [])
+    public function warning($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addWarning($message, $context);
+        return $this->getLogger($logger)->addWarning($message, $context);
     }
 
-    public function notice($message, $logger, array $context = [])
+    public function notice($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addNotice($message, $context);
+        return $this->getLogger($logger)->addNotice($message, $context);
     }
 
-    public function critical($message, $logger, array $context = [])
+    public function critical($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addCritical($message, $context);
+        return $this->getLogger($logger)->addCritical($message, $context);
     }
 
-    public function debug($message, $logger, array $context = [])
+    public function debug($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addDebug($message, $context);
+        return $this->getLogger($logger)->addDebug($message, $context);
     }
 
-    public function alert($message, $logger, array $context = [])
+    public function alert($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addAlert($message, $context);
+        return $this->getLogger($logger)->addAlert($message, $context);
     }
 
-    public function emergency($message, $logger, array $context = [])
+    public function emergency($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addEmergency($message, $context);
+        return $this->getLogger($logger)->addEmergency($message, $context);
     }
 
-    public function info($message, $logger, array $context = [])
+    public function info($message, $logger = 'default', array $context = [])
     {
-        $this->getLogger($logger)->addInfo($message, $context);
+        return $this->getLogger($logger)->addInfo($message, $context);
     }
 }
