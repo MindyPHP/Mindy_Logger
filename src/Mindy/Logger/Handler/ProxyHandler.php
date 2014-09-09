@@ -1,9 +1,9 @@
 <?php
 /**
- * 
+ *
  *
  * All rights reserved.
- * 
+ *
  * @author Falaleev Maxim
  * @email max@studio107.ru
  * @version 1.0
@@ -14,14 +14,14 @@
 
 namespace Mindy\Logger\Handler;
 
-
-use Mindy\Core\Object;
-use Monolog\Formatter\FormatterInterface;
-use Monolog\Handler\HandlerInterface;
+use Mindy\Helper\Traits\Accessors;
+use Mindy\Helper\Traits\Configurator;
 use Monolog\Logger;
 
-abstract class ProxyHandler extends Object
+abstract class ProxyHandler
 {
+    use Accessors, Configurator;
+
     public $name;
     public $level;
     public $bubble = true;

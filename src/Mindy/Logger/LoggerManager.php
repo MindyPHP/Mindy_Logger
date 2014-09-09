@@ -15,11 +15,13 @@
 namespace Mindy\Logger;
 
 use Exception;
-use Mindy\Core\Object;
 use Mindy\Helper\Creator;
+use Mindy\Helper\Traits\Accessors;
+use Mindy\Helper\Traits\Configurator;
 
-class LoggerManager extends Object
+class LoggerManager
 {
+    use Accessors, Configurator;
     /**
      * @var array
      */
