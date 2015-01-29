@@ -13,7 +13,7 @@
         "php": ">=5.4",
         "mindy/helper": "0.1",
         "monolog/monolog": "1.*",
-        "raven/raven": "0.10.0"
+        "raven/raven": "0.9.*"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
