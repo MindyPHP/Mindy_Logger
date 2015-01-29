@@ -5,27 +5,25 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "Mindy\\Logger\\": "src/Mindy/Logger"
         }
     },
     "require": {
         "php": ">=5.4",
-        "mindy/helper": "dev-master",
+        "mindy/helper": "0.1",
         "monolog/monolog": "*",
         "raven/raven": "0.9.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
     },
-    "authors": [
-        {
-            "name": "Maxim Falaleev",
-            "email": "max@studio107.ru",
-            "homepage": "http://studio107.ru",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Maxim Falaleev",
+        "email": "max@studio107.ru",
+        "homepage": "http://studio107.ru",
+        "role": "Developer"
+    }],
     "support": {
         "issues": "https://github.com/studio107/Mindy_Logger/issues?state=open"
     }
