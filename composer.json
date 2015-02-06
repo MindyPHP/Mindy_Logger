@@ -1,7 +1,7 @@
 {
     "name": "mindy/logger",
     "homepage": "https://github.com/studio107/Mindy_Logger",
-    "version": "0.2",
+    "version": "1.0.2",
     "type": "library",
     "license": "MIT",
     "autoload": {
