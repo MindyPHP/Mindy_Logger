@@ -235,7 +235,7 @@ class LoggerManager
      */
     public function beginProfile($message, $method, $logger = 'default')
     {
-        return $this->getLogger($logger)->addDebug($message, $method);
+        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
     }
 
     /**
@@ -246,6 +246,6 @@ class LoggerManager
      */
     public function endProfile($message, $method, $logger = 'default')
     {
-        return $this->getLogger($logger)->addDebug($message, $method);
+        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
     }
 }
