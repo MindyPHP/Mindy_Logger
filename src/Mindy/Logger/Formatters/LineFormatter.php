@@ -15,11 +15,14 @@
 
 namespace Mindy\Logger\Formatters;
 
-use Mindy\Core\Object;
+use Mindy\Helper\Traits\Accessors;
+use Mindy\Helper\Traits\Configurator;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
 
-class LineFormatter extends Object
+class LineFormatter
 {
+    use Accessors, Configurator;
+
     /**
      * @var \Monolog\Formatter\LineFormatter
      */

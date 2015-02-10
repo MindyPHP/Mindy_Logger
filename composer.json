@@ -1,19 +1,19 @@
 {
     "name": "mindy/logger",
     "homepage": "https://github.com/studio107/Mindy_Logger",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "Mindy\\Logger\\": "src/Mindy/Logger"
         }
     },
     "require": {
         "php": ">=5.4",
-        "mindy/helper": "dev-master",
-        "monolog/monolog": "*",
-        "raven/raven": "0.9.0"
+        "mindy/helper": "0.*",
+        "monolog/monolog": "1.*",
+        "raven/raven": "0.9.*"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"

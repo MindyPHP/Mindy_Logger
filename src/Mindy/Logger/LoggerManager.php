@@ -15,11 +15,13 @@
 namespace Mindy\Logger;
 
 use Exception;
-use Mindy\Core\Object;
 use Mindy\Helper\Creator;
+use Mindy\Helper\Traits\Accessors;
+use Mindy\Helper\Traits\Configurator;
 
-class LoggerManager extends Object
+class LoggerManager
 {
+    use Accessors, Configurator;
     /**
      * @var array
      */
@@ -44,14 +46,18 @@ class LoggerManager extends Object
      * @var \Monolog\Logger[]
      */
     private $_loggers = [];
-
+    /**
+     * @var array
+     */
     private $defaultLogger = [
         'default' => [
             'class' => '\Monolog\Logger',
             'handlers' => ['default']
         ],
     ];
-
+    /**
+     * @var array
+     */
     private $defaultHandler = [
         'default' => [
             'class' => '\Mindy\Logger\Handler\StreamHandler',
@@ -59,6 +65,9 @@ class LoggerManager extends Object
         ]
     ];
 
+    /**
+     * @throws \Exception
+     */
     public function init()
     {
         foreach ($this->formatters as $name => $data) {
@@ -98,6 +107,10 @@ class LoggerManager extends Object
         }
     }
 
+    /**
+     * @param $loggerName
+     * @return \Monolog\Logger|null
+     */
     protected function getLogger($loggerName)
     {
         $log = null;
@@ -118,48 +131,121 @@ class LoggerManager extends Object
         return $log;
     }
 
+    /**
+     * @return \Monolog\Logger
+     */
     protected function getDefaultLogger()
     {
         return $this->_loggers['default'];
     }
 
-    public function error($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function error($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addError($message, $context);
     }
 
-    public function warning($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function warning($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addWarning($message, $context);
     }
 
-    public function notice($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function notice($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addNotice($message, $context);
     }
 
-    public function critical($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function critical($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addCritical($message, $context);
     }
 
-    public function debug($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function debug($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addDebug($message, $context);
     }
 
-    public function alert($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function alert($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addAlert($message, $context);
     }
 
-    public function emergency($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function emergency($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addEmergency($message, $context);
     }
 
-    public function info($message, $logger = 'default', array $context = [])
+    /**
+     * @param $message
+     * @param array $context
+     * @param string $logger
+     * @return bool
+     */
+    public function info($message, array $context = [], $logger = 'default')
     {
         return $this->getLogger($logger)->addInfo($message, $context);
+    }
+
+    /**
+     * @param $message
+     * @param $method
+     * @param string $logger
+     * @return bool
+     */
+    public function beginProfile($message, $method, $logger = 'default')
+    {
+        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
+    }
+
+    /**
+     * @param $message
+     * @param $method
+     * @param string $logger
+     * @return bool
+     */
+    public function endProfile($message, $method, $logger = 'default')
+    {
+        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
     }
 }
