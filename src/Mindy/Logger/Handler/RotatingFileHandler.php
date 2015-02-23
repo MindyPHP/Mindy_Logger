@@ -1,21 +1,13 @@
 <?php
-/**
- *
- *
- * All rights reserved.
- *
- * @author Falaleev Maxim
- * @email max@studio107.ru
- * @version 1.0
- * @company Studio107
- * @site http://studio107.ru
- * @date 10/09/14.09.2014 22:43
- */
 
 namespace Mindy\Logger\Handler;
 
 use Monolog\Handler\RotatingFileHandler as MonoRotatingFileHandler;
 
+/**
+ * Class RotatingFileHandler
+ * @package Mindy\Logger
+ */
 class RotatingFileHandler extends StreamHandler
 {
     /**

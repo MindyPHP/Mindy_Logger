@@ -1,16 +1,4 @@
 <?php
-/**
- *
- *
- * All rights reserved.
- *
- * @author Falaleev Maxim
- * @email max@studio107.ru
- * @version 1.0
- * @company Studio107
- * @site http://studio107.ru
- * @date 11/06/14.06.2014 17:23
- */
 
 namespace Mindy\Logger;
 
@@ -19,6 +7,10 @@ use Mindy\Helper\Creator;
 use Mindy\Helper\Traits\Accessors;
 use Mindy\Helper\Traits\Configurator;
 
+/**
+ * Class LoggerManager
+ * @package Mindy\Logger
+ */
 class LoggerManager
 {
     use Accessors, Configurator;

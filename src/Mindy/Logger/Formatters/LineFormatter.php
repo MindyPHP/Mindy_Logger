@@ -1,24 +1,15 @@
 <?php
 
-/**
- *
- *
- * All rights reserved.
- *
- * @author Falaleev Maxim
- * @email max@studio107.ru
- * @version 1.0
- * @company Studio107
- * @site http://studio107.ru
- * @date 16/07/14.07.2014 12:08
- */
-
 namespace Mindy\Logger\Formatters;
 
 use Mindy\Helper\Traits\Accessors;
 use Mindy\Helper\Traits\Configurator;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
 
+/**
+ * Class LineFormatter
+ * @package Mindy\Logger
+ */
 class LineFormatter
 {
     use Accessors, Configurator;

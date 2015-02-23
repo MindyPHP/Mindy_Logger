@@ -1,22 +1,14 @@
 <?php
-/**
- *
- *
- * All rights reserved.
- *
- * @author Falaleev Maxim
- * @email max@studio107.ru
- * @version 1.0
- * @company Studio107
- * @site http://studio107.ru
- * @date 11/06/14.06.2014 19:15
- */
 
 namespace Mindy\Logger\Handler;
 
 use Mindy\Helper\Alias;
 use Monolog\Handler\StreamHandler as MonoStreamHandler;
 
+/**
+ * Class StreamHandler
+ * @package Mindy\Logger
+ */
 class StreamHandler extends ProxyHandler
 {
     /**
