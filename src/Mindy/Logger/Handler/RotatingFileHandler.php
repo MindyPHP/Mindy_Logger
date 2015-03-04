@@ -13,7 +13,7 @@ class RotatingFileHandler extends StreamHandler
     /**
      * @var int The maximal amount of files to keep (0 means unlimited)
      */
-    public $maxFiles = 10;
+    public $maxFiles = 5;
 
     public function getHandler()
     {

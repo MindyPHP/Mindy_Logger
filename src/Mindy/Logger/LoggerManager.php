@@ -52,7 +52,7 @@ class LoggerManager
      */
     private $defaultHandler = [
         'default' => [
-            'class' => '\Mindy\Logger\Handler\StreamHandler',
+            'class' => '\Mindy\Logger\Handler\RotatingFileHandler',
             'level' => 'DEBUG'
         ]
     ];
