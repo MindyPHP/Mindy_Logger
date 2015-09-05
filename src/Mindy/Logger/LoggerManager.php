@@ -44,7 +44,7 @@ class LoggerManager
      */
     private $defaultLogger = [
         'default' => [
-            'class' => '\Monolog\Logger',
+            'class' => '\Mindy\Logger\Logger',
             'handlers' => ['default']
         ],
     ];
@@ -103,7 +103,7 @@ class LoggerManager
 
     /**
      * @param $loggerName
-     * @return \Monolog\Logger|null
+     * @return \Mindy\Logger\Logger|null
      */
     protected function getLogger($loggerName)
     {
@@ -221,15 +221,22 @@ class LoggerManager
         return $this->getLogger($logger)->addInfo($message, $context);
     }
 
+    private $_profile = [];
+
+
     /**
      * @param $message
      * @param $method
      * @param string $logger
      * @return bool
      */
-    public function beginProfile($message, $method, $logger = 'default')
+    public function beginProfile($token, $method, $logger = 'default')
     {
-        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
+        $this->_profile[$token] = [
+            'time' => microtime(true),
+            'method' => $method,
+            'logger' => $logger
+        ];
     }
 
     /**
@@ -238,8 +245,14 @@ class LoggerManager
      * @param string $logger
      * @return bool
      */
-    public function endProfile($message, $method, $logger = 'default')
+    public function endProfile($token, $method, $logger = 'default')
     {
-        return $this->getLogger($logger)->addDebug($message, ['method' => $method]);
+        $profile = $this->_profile[$token];
+        $timeDiff = microtime(true) - $profile['time'];
+        return $this->getLogger($logger)->addProfile(strtr("{time} {method} {token}", [
+            '{token}' => $token,
+            '{time}' => sprintf("%f", $timeDiff) . ' (' . sprintf("%.4f", $timeDiff) . ' seconds)',
+            '{method}' => $profile['method']
+        ]), ['method' => $method], $logger);
     }
 }
