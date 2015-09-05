@@ -6,6 +6,7 @@ use Exception;
 use Mindy\Helper\Creator;
 use Mindy\Helper\Traits\Accessors;
 use Mindy\Helper\Traits\Configurator;
+use Monolog\Formatter\FormatterInterface;
 
 /**
  * Class LoggerManager
@@ -78,7 +79,8 @@ class LoggerManager
                 if (!isset($this->_formatters[$formatter])) {
                     throw new Exception("Formatter $formatter not initialized");
                 }
-                $this->_handlers[$name]->setFormatter($this->_formatters[$formatter]->formatter);
+                $fmt = $this->_formatters[$formatter];
+                $this->_handlers[$name]->setFormatter($fmt instanceof FormatterInterface ? $fmt : $fmt->formatter);
             }
         }
 
