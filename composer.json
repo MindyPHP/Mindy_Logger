@@ -1,30 +1,33 @@
 {
-    "name": "mindy/logger",
-    "homepage": "https://github.com/studio107/Mindy_Logger",
-    "version": "1.0.4",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Mindy\\Logger\\": "src/Mindy/Logger"
-        }
-    },
-    "require": {
-        "php": ">=5.4",
-        "mindy/helper": "0.*",
-        "monolog/monolog": "1.*",
-        "raven/raven": "0.9.*"
-    },
-    "require-dev": {
-        "satooshi/php-coveralls": "dev-master"
-    },
-    "authors": [{
-        "name": "Maxim Falaleev",
-        "email": "max@studio107.ru",
-        "homepage": "http://studio107.ru",
-        "role": "Developer"
-    }],
-    "support": {
-        "issues": "https://github.com/studio107/Mindy_Logger/issues?state=open"
+  "name": "mindy/logger",
+  "homepage": "https://github.com/studio107/Mindy_Logger",
+  "version": "1.0.4",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Mindy\\Logger\\": "src/Mindy/Logger"
     }
+  },
+  "require": {
+    "php": ">=5.4",
+    "mindy/helper": "0.*",
+    "monolog/monolog": "1.*",
+    "raven/raven": "0.9.*",
+    "bramus/monolog-colored-line-formatter": "^2.0"
+  },
+  "require-dev": {
+    "satooshi/php-coveralls": "dev-master"
+  },
+  "authors": [
+    {
+      "name": "Maxim Falaleev",
+      "email": "max@studio107.ru",
+      "homepage": "http://studio107.ru",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/studio107/Mindy_Logger/issues?state=open"
+  }
 }
