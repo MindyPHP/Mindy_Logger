@@ -1,9 +1,8 @@
 {
   "name": "mindy/logger",
-  "homepage": "https://github.com/studio107/Mindy_Logger",
-  "version": "1.0.5",
+  "homepage": "https://github.com/MindyPHP/Mindy_Logger",
   "type": "library",
-  "license": "MIT",
+  "license": "BSD",
   "autoload": {
     "psr-4": {
       "Mindy\\Logger\\": "src/Mindy/Logger"
@@ -11,7 +10,7 @@
   },
   "require": {
     "php": ">=5.4",
-    "mindy/helper": "0.*",
+    "mindy/helper": "*",
     "monolog/monolog": "1.*",
     "raven/raven": "0.9.*",
     "bramus/monolog-colored-line-formatter": "^2.0"
@@ -28,6 +27,6 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/studio107/Mindy_Logger/issues?state=open"
+    "issues": "https://github.com/MindyPHP/Mindy_Logger/issues?state=open"
   }
 }
